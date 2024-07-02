@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-07-03T04:18:51+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">기억의 궁전</title><subtitle>저의 블로그이자 포트폴리오입니다.</subtitle><author><name>주원</name></author><entry><title type="html"></title><link href="http://localhost:4000/2024-07-03-thread/" rel="alternate" type="text/html" title="" /><published>2024-07-03T04:18:51+09:00</published><updated>2024-07-03T04:18:44+09:00</updated><id>http://localhost:4000/2024-07-03-thread</id><content type="html" xml:base="http://localhost:4000/2024-07-03-thread/"><![CDATA[<p>쓰레드에 대해 알아보자</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-07-03T04:33:08+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">기억의 궁전</title><subtitle>저의 블로그이자 포트폴리오입니다.</subtitle><author><name>주원</name></author><entry><title type="html">쓰레드(Thread)란 무엇일까?</title><link href="http://localhost:4000/cs/thread/" rel="alternate" type="text/html" title="쓰레드(Thread)란 무엇일까?" /><published>2024-07-03T00:00:00+09:00</published><updated>2024-07-03T04:19:45+09:00</updated><id>http://localhost:4000/cs/thread</id><content type="html" xml:base="http://localhost:4000/cs/thread/"><![CDATA[<p>쓰레드에 대해 알아보자</p>
 
 <blockquote>
   <p>Thread는 그 자체로 존재하지 못한다. 즉, process에 의존해서 존재한다.</p>
@@ -128,8 +128,8 @@
 *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
 
 var disqus_config = function () {
-this.page.url = "http://localhost:4000/2024-07-03-thread/;"; // Replace PAGE_URL with your page's canonical URL variable
-this.page.identifier = "/2024-07-03-thread";; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+this.page.url = "http://localhost:4000/cs/thread/;"; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "/cs/thread";; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 };
 
 (function() { // DON'T EDIT BELOW THIS LINE
@@ -140,4 +140,4 @@ s.setAttribute('data-timestamp', +new Date());
 })();
 </script>
 
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>]]></content><author><name>주원</name></author></entry></feed>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>]]></content><author><name>주원</name></author><category term="CS" /><category term="Operating System" /><category term="Thread" /><summary type="html"><![CDATA[쓰레드에 대해 알아보자]]></summary></entry></feed>
