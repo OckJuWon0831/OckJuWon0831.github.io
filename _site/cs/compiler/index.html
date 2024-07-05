@@ -11,9 +11,9 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>
-  The concept of Thread - Method of Loci
+  On compiler - Method of Loci
 </title>
-<meta name="description" content="쓰레드에 대해 알아보자" />
+<meta name="description" content="컴파일러 구성요소" />
 
 
 <meta name="author" content="Ju Won" />
@@ -24,24 +24,24 @@
 <meta property="og:type" content="article" />
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Method of Loci" />
-<meta property="og:title" content="The concept of Thread" />
-<meta property="og:url" content="http://localhost:4000/cs/thread/" />
+<meta property="og:title" content="On compiler" />
+<meta property="og:url" content="http://localhost:4000/cs/compiler/" />
 
 
-<meta property="og:description" content="쓰레드에 대해 알아보자" />
+<meta property="og:description" content="컴파일러 구성요소" />
    
 <meta
   property="article:published_time"
-  content="2024-07-03T00:00:00+09:00"
+  content="2024-07-05T00:00:00+09:00"
 />
  
 <meta
   property="article:modified_time"
-  content="2024-07-03T04:19:45+09:00"
+  content="2024-07-05T04:19:45+09:00"
 />
     
 
-<link rel="canonical" href="http://localhost:4000/cs/thread/" />
+<link rel="canonical" href="http://localhost:4000/cs/compiler/" />
 
         
 <!-- end _includes/seo.html -->
@@ -250,24 +250,24 @@
   >
     <meta
       itemprop="headline"
-      content="The concept of Thread"
+      content="On compiler"
     /> <meta
       itemprop="description"
-      content="쓰레드에 대해 알아보자"
+      content="컴파일러 구성요소"
     /> <meta
       itemprop="datePublished"
-      content="2024-07-03T00:00:00+09:00"
+      content="2024-07-05T00:00:00+09:00"
     /> <meta
       itemprop="dateModified"
-      content="2024-07-03T04:19:45+09:00"
+      content="2024-07-05T04:19:45+09:00"
     />
 
     <div class="page__inner-wrap">
       
       <header>
         <h1 id="page-title" class="page__title" itemprop="headline">
-          <a href="http://localhost:4000/cs/thread/" itemprop="url"
-            ><p>The concept of Thread</p>
+          <a href="http://localhost:4000/cs/compiler/" itemprop="url"
+            ><p>On compiler</p>
 </a
           >
         </h1> 
@@ -278,7 +278,7 @@
       <span class="page__meta-date">
         <i class="far fa-calendar-alt" aria-hidden="true"></i>
         
-        <time datetime="2024-07-03T00:00:00+09:00">July 3, 2024</time>
+        <time datetime="2024-07-05T00:00:00+09:00">July 5, 2024</time>
       </span>
     
 
@@ -291,7 +291,7 @@
       <span class="page__meta-readtime">
         <i class="far fa-clock" aria-hidden="true"></i>
         
-          2 minute read
+          1 minute read
         
       </span>
     
@@ -302,128 +302,128 @@
       
 
       <section class="page__content" itemprop="text">
-         <p>쓰레드에 대해 알아보자</p>
+         <h3 id="컴파일러-구성요소">컴파일러 구성요소</h3>
+
+<p><img src="/assets/images/os/compiler.png" alt="compiler" /></p>
 
 <blockquote>
-  <p>Thread는 그 자체로 존재하지 못한다. 즉, process에 의존해서 존재한다.</p>
+  <p>프로그래밍은 글쓰기이다.</p>
 </blockquote>
 
+<p>컴파일러를, 특히 컴파일러의 프론트엔드 단을 공부하면, 프로그래밍 언어란 무엇인가라는 주제로까지 문답이 가능해지며, 이는 전반적인 프로그래밍 언어에 대한 이해력이 향상된다.</p>
+
+<h2 id="어휘-구문-분석-개념">어휘, 구문 분석 개념</h2>
+
 <ol>
-  <li>현 Process는 최소 1개 이상의 Thread를 갖는다.
-    <blockquote>
-      <p>Process는 관리의 단위이다.</p>
-    </blockquote>
-  </li>
-  <li>Thread는 개별화된 흐름(문맥)과 전용 스택을 갖는 <strong>실행의 단위</strong>이다.</li>
-  <li>모든 Thread는 <strong><em>자신이 속한 Process의 가상 메모리 공간을 공유</em></strong> 한다.</li>
-</ol>
+  <li>
+    <p>문자열 형태로 존재하는 <strong>소스코드</strong>를, 의미 있는 문자 혹은 <strong>문자열 조각(토큰)</strong> 으로 변환 (예약어, 상수, 변수, 연산자 등등)</p>
 
-<h3 id="os---process---thread">OS -&gt; Process -&gt; Thread</h3>
-
-<ul>
-  <li>Operating System : 국가행정(관리를 위한)</li>
-  <li>Process : 국가가 관리하는 각 ‘가구’</li>
-  <li>Thread : 관리 받는 가구의 ‘구성원’
     <ul>
-      <li>각 개인은 독립적이고 개별화된 ‘흐름’을 가진다.</li>
+      <li>빈칸이나, 세미콜론 같은 것들은 구문문자라 하며, 영어로 <strong>delimiter</strong>라고 함</li>
     </ul>
   </li>
-</ul>
-
-<p>운영체제는 Virtual Memory(자원)를 Process에게 할당하고, 그 Virtual Memory를 각 Process의 Threads들이 공유한다.</p>
-
-<h2 id="가상-메모리">가상 메모리</h2>
-
-<ul>
-  <li>h/w 단에 있는 RAM + SSD의 물리적 메모리 공간을 추상화하여 각 process에 할당된 것이 바로 가상 메모리이다.</li>
-  <li>process에 할당된 가상 메모리는 각 thread가 쓰는 개별공간, 그리고 공용으로 사용되는 공간, 두가지로 나뉜다.
+  <li>
+    <p>각 토큰을 구문 문자를 기준으로 잘라내 <strong>구문 트리(Syntax tree)</strong>로 변환하며 이 과정에서 <strong>문법 오류</strong>를 검출한다.</p>
     <ul>
-      <li>개별공간(개인방): <strong>TLS(Thread local storage)</strong> + 각 thread마다 딸려오는 stack 메모리</li>
-      <li>공용공간(화장실): 각 Thread마다 공용자원에 대한 선점이 발생하는데 이를, <strong>경쟁조건(Race condition)</strong> 이라 한다. 이런 상황을 통제하기 위한 매커니즘이 <strong>동기화(Synchronization)</strong>이다.</li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="thread를-생기는-원리">Thread를 생기는 원리</h2>
-
-<ol>
-  <li>Hello world를 print하는 함수 이름이 main()라 가정하자.</li>
-  <li>이 main() 함수를 OS가 실행시킨다.</li>
-  <li>이로 인해 Process가 만들어지고, 그 안에서 Thread가 만들어져서, main() 함수를 호출한다.</li>
-  <li>main 함수를 실행한 thread를 main thread라고 한다.</li>
-  <li>Main thread가 생겨나면, 그 명령이 user 모드에서 kernel을 거쳐 h/w까지 가는 일련의 흐름이 나타난다.</li>
-</ol>
-
-<h2 id="동시성과-우연">동시성과 우연</h2>
-
-<ol>
-  <li>Main thread가 생겨났고, 다른 명령을 처리하는 thread가 실행됐다고 가정하자.</li>
-  <li>이 흐름은 main thread와 <strong><em>동시에</em></strong> 이어진다.</li>
-  <li>현재 CPU에는 2개의 thread로 인한 명령들이 <strong>연산</strong>되고 있다.</li>
-  <li>과거 CPU가 싱글코어 였던 시절과 달리, 기술의 발전으로 인해 CPU가 멀티코어인 지금, 각 Thread들의 연산을 동시에 처리할 수 있다. 이를 <strong>동시성(Concurrency)</strong> 이라 한다.</li>
-  <li>Thread의 명령이 CPU의 어느 코어에서 연산될지는 운영체제가 결정하므로 알 수가 없다. 이를 <strong>우연(Contingency)</strong>이라 한다.</li>
-</ol>
-
-<ul>
-  <li>Contingency는 Race Condition과 Synchronization으로 인한 가상 메모리 자원 관리 정책으로 인해 생길 수 밖에 없다.</li>
-</ul>
-
-<ol>
-  <li>반대로, CPU가 싱글코어라 가정하자. 연산을 한개의 코어로 할수있으므로, thread 2개의 연산을 <strong>context switching</strong>하며 연산한다. 이는 동시성이 아니다.</li>
-</ol>
-
-<h4 id="동기화를-너무-딥하게-다루면-deadlock이라는-논리하자에-빠질-수-있다">동기화를 너무 딥하게 다루면, Deadlock이라는 논리하자에 빠질 수 있다.</h4>
-
-<h4 id="동기화를-직접-다루면-성능을-낮추므로-이를-위한-보완이-필요할-수-있다">동기화를 직접 다루면, 성능을 낮추므로, 이를 위한 보완이 필요할 수 있다.</h4>
-
-<h2 id="thread를-생성하는-것은-생각보다-시간이-많이-걸린다">Thread를 생성하는 것은 생각보다 시간이 많이 걸린다.</h2>
-
-<blockquote>
-  <p>thread를 생성하는 것은 CPU + Memory를 사용해서 추가적인 비용이 소모된다.</p>
-</blockquote>
-
-<ol>
-  <li>main 함수에서, worker thread를 생성 후 main thread 내에서 연산을 처리하는 코드를 작성했다고 가정하자.</li>
-  <li>main thread에서 integer값을 백만번 증가시키는 정도의 상대적으로 시간이 오래걸리는 연산이 아닌 이상, worker thread는 생성이 되지 않는다.</li>
-</ol>
-
-<ul>
-  <li>서버 관리자들은 요청이 들어와서 그때 thread를 만드는 것은 너무 시간이 오래걸린다.</li>
-  <li>그렇기에, 보통 thread를 만들어놓은 상황에서 wait() 후, 추가 요청이 들어오면 만들어놓은 thread를 깨워서 연산을 처리하는 방식으로 작업한다.</li>
-</ul>
-
-<h2 id="스레드-동기화thread-synchronization">스레드 동기화(Thread Synchronization)</h2>
-
-<ol>
-  <li><strong>임계구간(위험구간) 코드</strong>가 여러 스레드에서 동시에 실행되는 일을 막는 것</li>
-</ol>
-
-<ul>
-  <li>멀티 쓰레드 환경에서 Segmentation fault error를 막기 위함</li>
-  <li>보통 메모리에서 발생하는 문제이다.</li>
-</ul>
-
-<ol>
-  <li><strong>동기화 객체</strong>를 이용해 구현</li>
-</ol>
-
-<ul>
-  <li>신호등이라고 생각하면 된다.</li>
-</ul>
-
-<ol>
-  <li>동기화 객체의 종류
-    <ul>
-      <li>critical section (user 모드에서 사용)</li>
-      <li>mutex (kernel 모드에서 사용)</li>
-      <li>semaphore (kernel 모드에서 사용)</li>
+      <li>각 토큰을 잘라내는 과정을 <strong>토큰화(Tokenizer)</strong> 라고 하며, 개발할때 <strong>정규표현식</strong>으로 개발함</li>
+      <li><strong>추상 구문 트리(AST)</strong> 를 만들때 트리의 형식과 규칙을 규정할 때 정규표현식을 사용함.</li>
     </ul>
   </li>
 </ol>
 
-<p>동기화를 적용하는데 보통 비용이 적게드는 critical section 객체를 많이 사용한다.</p>
+<h2 id="어휘-구문-분석-예시">어휘, 구문 분석 예시</h2>
 
-<h4 id="스레드-동기화를-실패할-시-deadlock이-발생한다">스레드 동기화를 실패할 시 deadlock이 발생한다.</h4>
+<p><img src="/assets/images/os/1.png" alt="" /></p>
+
+<p>보통 에디터에서 코드를 이런식으로 작성한다. 사람이 보기 좋고, 이해하기 편하기 위함이다.</p>
+
+<p><img src="/assets/images/os/2.png" alt="" /></p>
+
+<p>실제 코드는 이런식으로 작성된다.</p>
+
+<h2 id="추상-구문-트리ast">추상 구문 트리(AST)</h2>
+
+<p><img src="/assets/images/os/3.png" alt="" /></p>
+
+<p>여러 항, 구문을 한 개의 항, 구문으로 묶어주는 것을 중괄호{}가 해준다.</p>
+
+<h2 id="의미-분석-및-중간-표현ir-생성">의미 분석 및 중간 표현(IR) 생성</h2>
+
+<ol>
+  <li>예약어 등 코드의 의미에 따라 더 필요한 정보를 유추하거나 분석</li>
+  <li><strong>자료형 검사</strong> 과정 포함</li>
+  <li>
+    <p>항, <strong>표현식</strong>, 구문 그리고 <strong>평가</strong></p>
+
+    <ul>
+      <li>Evaluation == 평가이다. 곧 연산을 의미하며, 실행이다</li>
+      <li>표현식과 평가는 떼놓을 수 없는 개념이라는 것을 인지할 것.</li>
+      <li>언어의 문법에서… 구문이라는 큰 범주안에, 식이나 항과 같은 작은 조각들이 포함되어 있으며, 이안에 표현식이 포함되어 있을 수도, 없을 수도 있다.</li>
+    </ul>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int a = 3 + 4;
+</code></pre></div>    </div>
+
+    <ul>
+      <li>위의 개념이 컴파일러의 관점에서 바라보면, 흔히 코드를 짤때 대충 넘길법한 이런 표현식도 깊게 생각할 수 있는 기회를 제공한다.</li>
+    </ul>
+  </li>
+  <li>특정 언어에 종속되지 않는 중간언어로 변환해 기계어 생성 준비</li>
+  <li>경우에 따라 다른 언어로 변환도 가능</li>
+</ol>
+
+<h2 id="코드생성-및-최적화">코드생성 및 최적화</h2>
+
+<ol>
+  <li>IR로부터 어셈블리어 등 기계어에 대응될 수 있는 쉬운 명령어 연속(집합)으로 변환</li>
+  <li>기계어 변환에 앞서 <strong>불필요한 코드를 제거</strong>하는 등 최적화 작업 실시</li>
+</ol>
+
+<h2 id="보편적-의미의-최적화">보편적 의미의 최적화</h2>
+
+<ol>
+  <li>불필요한 연산 제거
+    <ul>
+      <li><strong>변수에 대한 의존관계</strong> 분석</li>
+      <li>불필요한 <strong>상수연산</strong>을 결과로 대체</li>
+      <li><strong>반복문 내부</strong> 불필요 코드 제거</li>
+    </ul>
+  </li>
+  <li>함수 호출이 필요 없도록 <strong>inline</strong>화
+    <ul>
+      <li>언어 문법으로 존재하지만 보통은 <strong>컴파일러가 자동</strong>으로 처리</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="좋은-코드란-무엇일까">좋은 코드란 무엇일까?</h3>
+
+<ul>
+  <li>컴파일러가 자동으로 처리할 때 이 작업을 용이하도록 코드를 짜는 것이 좋은 코드를 작성하는 것이다.
+    <ul>
+      <li><strong>상수화!</strong></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="기계어로-변환">기계어로 변환</h2>
+
+<ol>
+  <li>어셈블리(문자열로 표기)로 변환된 코드를 실제 CPU가 인식할 수 있는 기계어(보통 16진수로 표기)로 변환</li>
+  <li>같은 어셈블리 코드를 x86, ARM 등 다양한 CPU(기계)에 맞춰 변환하는 것이 가능</li>
+</ol>
+
+<h2 id="실행-파일-그리고-연산과-실행">실행 파일 그리고 연산과 실행</h2>
+
+<ol>
+  <li>실행 파일이란 CPU가 인식하고 정해진 연산을 수행할 수 있는 <strong>명령들의 연속된 유한 집합체</strong></li>
+  <li>기계는 <strong>연속된 명령어 집합</strong>에서 명령을 하나씩 가져와 연산실시</li>
+  <li>명령의 <strong>연속된 연산</strong>이 곧 실행 (<strong>Process 같은 상위 개념</strong>의 등장)
+    <ul>
+      <li>연속의 흐름이 곧 문맥이라는 의미가 될 것이고, 여기에서 문맥 교체(Context switching)이라는 개념 등장.</li>
+    </ul>
+  </li>
+</ol>
 
 <p><br /></p>
 <hr />
@@ -435,8 +435,8 @@
 *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
 
 var disqus_config = function () {
-this.page.url = "http://localhost:4000/cs/thread/;"; // Replace PAGE_URL with your page's canonical URL variable
-this.page.identifier = "/cs/thread";; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+this.page.url = "http://localhost:4000/cs/compiler/;"; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "/cs/compiler";; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 };
 
 (function() { // DON'T EDIT BELOW THIS LINE
@@ -462,9 +462,9 @@ s.setAttribute('data-timestamp', +new Date());
     <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
     <span itemprop="keywords">
     
-      <a href="/tags/#operating-system" class="page__taxonomy-item p-category" rel="tag">Operating System</a><span class="sep">, </span>
+      <a href="/tags/#compiler" class="page__taxonomy-item p-category" rel="tag">Compiler</a><span class="sep">, </span>
     
-      <a href="/tags/#thread" class="page__taxonomy-item p-category" rel="tag">Thread</a>
+      <a href="/tags/#operating-system" class="page__taxonomy-item p-category" rel="tag">Operating System</a>
     
     </span>
   </p>
@@ -488,7 +488,7 @@ s.setAttribute('data-timestamp', +new Date());
 
  
 
-  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2024-07-03">July 3, 2024</time></p>
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2024-07-05">July 5, 2024</time></p>
 
       </footer>
 
@@ -497,20 +497,20 @@ s.setAttribute('data-timestamp', +new Date());
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=The+concept+of+Thread%20http%3A%2F%2Flocalhost%3A4000%2Fcs%2Fthread%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=On+compiler%20http%3A%2F%2Flocalhost%3A4000%2Fcs%2Fcompiler%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fcs%2Fthread%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fcs%2Fcompiler%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/cs/thread/" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/cs/compiler/" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
  
   <nav class="pagination">
     
-      <a href="#" class="pagination--pager disabled">Previous</a>
+      <a href="/cs/thread/" class="pagination--pager" title="The concept of Thread
+">Previous</a>
     
     
-      <a href="/cs/compiler/" class="pagination--pager" title="On compiler
-">Next</a>
+      <a href="#" class="pagination--pager disabled">Next</a>
     
   </nav>
 
@@ -522,7 +522,7 @@ s.setAttribute('data-timestamp', +new Date());
    
   <span class="tag">Operating System</span>
   
-  <span class="tag">Thread</span>
+  <span class="tag">Compiler</span>
       
 <div class="page__related">
   
@@ -539,7 +539,7 @@ s.setAttribute('data-timestamp', +new Date());
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/cs/compiler/" rel="permalink">On compiler
+        <a href="/cs/thread/" rel="permalink">The concept of Thread
 </a>
       
     </h2>
@@ -551,7 +551,7 @@ s.setAttribute('data-timestamp', +new Date());
       <span class="page__meta-date">
         <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
         
-        <time datetime="2024-07-05T00:00:00+09:00">July 5, 2024</time>
+        <time datetime="2024-07-03T00:00:00+09:00">July 3, 2024</time>
       </span>
     
 
@@ -571,7 +571,7 @@ s.setAttribute('data-timestamp', +new Date());
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">컴파일러 구성요소
+    <p class="archive__item-excerpt" itemprop="description">쓰레드에 대해 알아보자
 </p>
   </article>
 </div>
@@ -631,8 +631,8 @@ s.setAttribute('data-timestamp', +new Date());
     
   <script>
     var disqus_config = function () {
-      this.page.url = "http://localhost:4000/cs/thread/";  /* Replace PAGE_URL with your page's canonical URL variable */
-      this.page.identifier = "/cs/thread"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+      this.page.url = "http://localhost:4000/cs/compiler/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/cs/compiler"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
     };
     (function() { /* DON'T EDIT BELOW THIS LINE */
       var d = document, s = d.createElement('script');
