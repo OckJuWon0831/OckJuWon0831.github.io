@@ -15,13 +15,13 @@
 minimal_mistakes_skin: "dark" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
 # Site Settings
-locale: "ko" # "en-US"
+locale: "en-US" # "en-US"
 rtl: # true, false (default) # turns direction of the page into right to left for RTL languages
-title: "기억의 궁전"
+title: "Method of Loci"
 title_separator: "-"
-subtitle: "Method of Loci" # site tagline that appears below site title in masthead
-name: "옥주원"
-description: "저의 블로그이자 포트폴리오입니다."
+subtitle: # site tagline that appears below site title in masthead
+name: "Ock Ju Won"
+description: "Welcome to my blog stacking up the experiences and knowledge."
 url: "https://ockjuwon0831.github.io/" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl: # the subpath of your site, e.g. "/blog"
 repository: "OckJuWon0831/OckJuWon0831.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
@@ -112,9 +112,9 @@ analytics:
 
 # Site Author
 author:
-  name: "주원"
+  name: "Ju Won"
   avatar: "/assets/images/juwon.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio: "저의 지식, 경험, 그리고 생각을 쌓아놓은 곳입니다"
+  bio: "Welcome to my blog stacking up experiences and knowledge."
   location: "Seoul"
   email:
   links:
